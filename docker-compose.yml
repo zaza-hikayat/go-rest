@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  rest_api:
+    build: .
+    depends_on:
+      - database
+    environment:
+      - HTTP_PORT=${HTTP_PORT}
+  database:
+    container_name: database
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+
